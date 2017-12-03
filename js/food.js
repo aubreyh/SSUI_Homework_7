@@ -29,6 +29,8 @@
 			"</table>";
 	}
     
+    var food_illnesses = d3.map();
+    
     d3.json("illnesses.json", function(error, all_data) {
         if (error) throw error;
       
@@ -52,7 +54,11 @@
             var deaths = data[state_name]["fatalities"];
             var all_incidents = ill + hospital + deaths;
             
+            
+            
             var by_population = (all_incidents / pop) * 100000;
+            
+            food_illnesses.set(abbr, +by_population);
             //console.log(state_name)
             //console.log(by_population)
             //console.log( rgb.toString(d3.interpolateYlGn(0)))
@@ -62,7 +68,8 @@
                                       illnesses: ill, 
                                       hospitalizations: hospital, 
                                       fatalities: deaths,
-                                      color: d3.interpolate("#fff5eb", "#7f2704")(by_population)
+                                      //rate: all_incidents,
+                                      //color: d3.interpolate("#fff5eb", "#7f2704")(by_population)
                                       /*color: d3.interpolate("#fcfbfd", "#3f007d")(by_population)*/
                                       }; 
                                 
