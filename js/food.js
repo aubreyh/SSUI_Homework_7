@@ -7,15 +7,6 @@
             'SC': 'South Carolina','SD': 'South Dakota','TN': 'Tennessee','TX': 'Texas','UT': 'Utah','VA': 'Virginia',
             'VT': 'Vermont','WA': 'Washington','WI': 'Wisconsin','WV': 'West Virginia','WY': 'Wyoming'
     }
-
-    var state_abbr_reverse = {'Alabama': 'AL','Alaska': 'AK','Arizona': 'AZ','Arkansas': 'AR','California': 'CA','Colorado': 'CO','Connecticut': 'CT',
-        'Washington DC': 'DC','Delaware': 'DE','Florida': 'FL','Georgia': 'GA','Hawaii': 'HI','Idaho': 'ID','Illinois': 'IL','Indiana': 'IN','Iowa': 'IA',
-        'Kansas': 'KS','Kentucky': 'KY','Louisiana': 'LA','Maine': 'ME','Maryland': 'MD','Massachusetts': 'MA','Michigan': 'MI','Minnesota': 'MN','Mississippi': 'MS',
-        'Missouri': 'MO','Montana': 'MT','Nebraska': 'NE','Nevada': 'NV','New Hampshire': 'NH','New Jersey': 'NJ','New Mexico': 'NM','New York': 'NY',
-        'North Carolina': 'NC','North Dakota': 'ND','Ohio': 'OH','Oklahoma': 'OK','Oregon': 'OR','Pennsylvania': 'PA','Rhode Island': 'RI',
-        'South Carolina': 'SC','South Dakota': 'SD','Tennessee': 'TN','Texas': 'TX','Utah': 'UT','Vermont': 'VT','Virginia': 'VA','Washington': 'WA',
-        'West Virginia': 'WV','Wisconsin': 'WI','Wyoming': 'WY'
-    }
     
     var states = Object.keys(state_abbr)
 
@@ -29,24 +20,44 @@
 			"</table>";
 	}
     
-    var food_illnesses = d3.map();
-    
-    d3.json("illnesses.json", function(error, all_data) {
-        if (error) throw error;
+        // when the input range changes update the circle 
+    d3.select("#nRadius").on("input", function() {
+      update(+this.value);
+    });
+
+    var svg = d3.select("svg"),
+        width = +svg.attr("width"),
+        height = +svg.attr("height");
+        
+
+    // year label; the value is set on transition.
+    var label = svg.append("text")
+        .attr("class", "year label")
+        .attr("text-anchor", "end")
+        .attr("y", height - 150)
+        .attr("x", width - 30)
+        .text(2010);
+
+    // update the elements
+    function update(year) {
+      //console.log(year)
+      //console.log(static_data)
+      data = static_data[year]
+      //console.log(data)
       
-        var data = all_data["2010"]
-        //console.log(data)
-      
+      // adjust the text on the range slider
+      //d3.select("#nRadius-value").text(year);
+      d3.select("#nRadius").property("value", year);
+
+        // update the year label
+        label.text(year);
+
         var sampleData = {};
 		
+        food_illnesses.clear()
         states.forEach(function(abbr){ 
-            var low_value = 0;
-            var mid_value = 10;
-            var high_value = 100;
-            
+                     
             state_name = state_abbr[abbr]
-            //console.log(state_name)
-            //console.log(data[state_name])
       
             var pop = data[state_name]["population"];
             var ill = data[state_name]["illnesses"];
@@ -59,30 +70,45 @@
             var by_population = (all_incidents / pop) * 100000;
             
             food_illnesses.set(abbr, +by_population);
-            //console.log(state_name)
-            //console.log(by_population)
-            //console.log( rgb.toString(d3.interpolateYlGn(0)))
-            //console.log(d3.interpolateOranges(0))
-            //console.log(d3.interpolateOranges(1))
+
             sampleData[state_name] = {population: pop, 
                                       illnesses: ill, 
                                       hospitalizations: hospital, 
                                       fatalities: deaths,
-                                      //rate: all_incidents,
-                                      //color: d3.interpolate("#fff5eb", "#7f2704")(by_population)
-                                      /*color: d3.interpolate("#fcfbfd", "#3f007d")(by_population)*/
                                       }; 
-                                
-                            
-                         
+                                         
             });
-        
+            //console.log(sampleData)
             /* draw states on id #statesvg */	
             uStates.draw("#statesvg", sampleData, tooltipHtml);
 	
             d3.select(self.frameElement).style("height", "600px"); 
-    });
+    }
+    
+    var food_illnesses = d3.map();
+    
+    static_data = {};
+    
+    d3.queue()
+        .defer(d3.json, "illnesses.json")
+        .await(analyze);
+
+    function analyze(error, data) {
+      if(error) { console.log(error); }
+
+
+      static_data["2010"] = data["2010"];
+      static_data["2011"] = data["2011"];
+      static_data["2012"] = data["2012"];
+      static_data["2013"] = data["2013"];
+      static_data["2014"] = data["2014"];
+      static_data["2015"] = data["2015"];
+      update("2010");
+    }
     
 
+    
+
+    
     
     

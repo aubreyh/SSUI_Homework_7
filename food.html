@@ -3,7 +3,21 @@
 <link rel="stylesheet" type="text/css" href="css/food.css">
 <body>
   <div id="tooltip"></div><!-- div to hold tooltip. -->
+  <div id="container">
+  <h1>Restaurant-Related Foodborne Disease Outbreaks</h1>
+<p>
+  <label for="nRadius" 
+         style="display: inline-block; width: 240px; text-align: right">
+         <span id="nRadius-value"></span>
+  </label>
+  <input type="range" min="2010" max="2015" id="nRadius">
+</p>
+  
+
+  </div>
+  <div id="map">
   <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
+  </div>
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>

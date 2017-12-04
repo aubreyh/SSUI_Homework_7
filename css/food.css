@@ -1,4 +1,19 @@
-	.state{
+	#container{
+        margin-top: 25px;
+    }
+    h1{
+        margin-left: 125px
+    }
+
+    input[type="range"] {
+        position:absolute;
+        /*-webkit-transform: rotate(270deg);*/
+        top: 580px;
+        left: 800px;
+        width: 125px;
+       
+    }
+    .state{
 		fill: none;
 		stroke: #a9a9a9;
 		stroke-width: 1;
@@ -6,6 +21,10 @@
 	.state:hover{
 		fill-opacity:0.5;
 	}
+    .year.label {
+      font-size: 65px;
+      fill: #DDD;
+    }
 	#tooltip {   
 		position: absolute;           
 		text-align: center;

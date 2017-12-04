@@ -67,12 +67,23 @@
 		
 	uStates.draw = function(id, data, toolTip){	
         
-        
-        /* legend */
+        /*
+        var svg = d3.select("svg"),
+            width = +svg.attr("width"),
+            height = +svg.attr("height");
+            
+        */
+        /*
+        var old_svg = d3.select("svg");
+        old_svg.remove()
+
+        temp = d3.select("#map").append("svg")
+        */
         var svg = d3.select("svg"),
             width = +svg.attr("width"),
             height = +svg.attr("height");
 
+        /* legend */        
         var x = d3.scaleLinear()
             .domain([1, 10])
             .rangeRound([600, 860]);
@@ -105,7 +116,7 @@
             .attr("fill", "#000")
             .attr("text-anchor", "start")
             .attr("font-weight", "bold")
-            .text("Foodborne Disease Outbreaks");
+            .text("Outbreaks Per Capita");
 
         g.call(d3.axisBottom(x)
             .tickSize(13)
@@ -133,23 +144,16 @@
 			.data(uStatePaths).enter().append("path").attr("class","state").attr("d",function(d){ 
             return d.d;
             })
-            /*
-            .attr("fill", function(d) { 
-            return color(d.rate = food_illnesses.get(d.id)); 
-            
-            })
-            */
 			.style("fill",function(d){ 
-            //console.log(data);
+            console.log("calling style")
             var state_name = state_abbr[d.id]
-            var rate = data[state_name].rate;
-            temp = color(d.rate = food_illnesses.get(d.id));  
-            //console.log(food_illnesses.get(d.id)); 
-            return temp;
-            //return data[state_name].color; 
+            var rate = food_illnesses.get("AL");
+            console.log(rate)
+            return color(d.rate = food_illnesses.get(d.id));  
             })
 			.on("mouseover", mouseOver).on("mouseout", mouseOut);
+              
 	} // end .draw
     
-	this.uStates=uStates;
+	this.uStates = uStates;
 })();
