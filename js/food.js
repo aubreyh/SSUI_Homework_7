@@ -55,32 +55,47 @@
         var sampleData = {};
 		
         food_illnesses.clear()
+        low = 999999999
+        high = 0
+        low_state = ""
+        high_state = ""
         states.forEach(function(abbr){ 
                      
             state_name = state_abbr[abbr]
       
-            var pop = data[state_name]["population"];
-            var ill = data[state_name]["illnesses"];
-            var hospital = data[state_name]["hospitalizations"];
-            var deaths = data[state_name]["fatalities"];
-            var all_incidents = ill + hospital + deaths;
+            var population = data[state_name]["population"];
+            var illnesses = data[state_name]["illnesses"];
+            var hospitalizations = data[state_name]["hospitalizations"];
+            var fatalities = data[state_name]["fatalities"];
+            var all_incidents = illnesses + hospitalizations + fatalities;
             
+            var per_capita = (all_incidents / population) * 100000;
             
+            if(per_capita < low){
+                low = per_capita
+                low_state = state_name
+            }
+            if(per_capita > high){
+                high = per_capita
+                high_state = state_name
+            }
+            //console.log(per_capita);
             
-            var by_population = (all_incidents / pop) * 100000;
-            
-            food_illnesses.set(abbr, +by_population);
+            food_illnesses.set(abbr, +per_capita);
 
-            sampleData[state_name] = {population: pop, 
-                                      illnesses: ill, 
-                                      hospitalizations: hospital, 
-                                      fatalities: deaths,
+            sampleData[state_name] = {population: population, 
+                                      illnesses: illnesses, 
+                                      hospitalizations: hospitalizations, 
+                                      fatalities: fatalities,
                                       }; 
                                          
             });
-            //console.log(sampleData)
+            console.log(low_state)
+            console.log(low)
+            console.log(high_state)
+            console.log(high)
             /* draw states on id #statesvg */	
-            uStates.draw("#statesvg", sampleData, tooltipHtml);
+            uStates.draw("#statesvg", sampleData, year, tooltipHtml);
 	
             d3.select(self.frameElement).style("height", "600px"); 
     }
@@ -95,7 +110,6 @@
 
     function analyze(error, data) {
       if(error) { console.log(error); }
-
 
       static_data["2010"] = data["2010"];
       static_data["2011"] = data["2011"];

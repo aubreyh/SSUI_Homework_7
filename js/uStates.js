@@ -156,10 +156,7 @@
             return d.d;
             })
 			.style("fill",function(d){ 
-            console.log("calling style")
             var state_name = state_abbr[d.id]
-            var rate = food_illnesses.get("AL");
-            console.log(rate)
             return color(d.rate = food_illnesses.get(d.id));  
             })
 			.on("mouseover", mouseOver).on("mouseout", mouseOut);
