@@ -65,7 +65,7 @@
     
 	var uStates={};
 		
-	uStates.draw = function(id, data, toolTip){	
+	uStates.draw = function(id, data, year, toolTip){	
         
         /*
         var svg = d3.select("svg"),
@@ -73,16 +73,27 @@
             height = +svg.attr("height");
             
         */
-        /*
+        
         var old_svg = d3.select("svg");
         old_svg.remove()
 
         temp = d3.select("#map").append("svg")
-        */
+        temp.attr("id", "statesvg");
+        temp.attr("width", 960);
+        temp.attr("height", 600);
+        
         var svg = d3.select("svg"),
             width = +svg.attr("width"),
             height = +svg.attr("height");
 
+        // year label; the value is set on transition.
+        var label = svg.append("text")
+            .attr("class", "year label")
+            .attr("text-anchor", "end")
+            .attr("y", height - 150)
+            .attr("x", width - 30)
+            .text(year);
+        
         /* legend */        
         var x = d3.scaleLinear()
             .domain([1, 10])
