@@ -4,22 +4,32 @@
 <body>
   <div id="tooltip"></div><!-- div to hold tooltip. -->
   <div id="container">
-  <h1>Restaurant-Related Foodborne Disease Outbreaks</h1>
-<p>
-  <label for="nRadius" 
-         style="display: inline-block; width: 240px; text-align: right">
-         <span id="nRadius-value"></span>
-  </label>
-  <input type="range" min="2010" max="2015" id="nRadius">
-</p>
+    <h1>Restaurant-Related Foodborne Disease Outbreaks</h1>
+    <div>
+      <label id="slider_label" for="slider">
+        <span id="slider_value"></span>
+      </label>
+      <input type="range" min="2000" max="2015" id="slider" class="slider">
+    </div>
+    
+    <div id="map_container">
+      <svg width="960" height="600" id="map"></svg> <!-- svg to hold the map. -->
+    </div>
+    <div>
+      <span>
+        <p>Source: 
+          <a href="https://www.kaggle.com/cdc/foodborne-diseases">Centers for Disease Control and Prevention</a>,
+          <a href="https://www.census.gov/data/tables/2016/demo/popest/nation-total.html">Census Bureau</a>
+        </p> 
+      </span>
+    </div>  
+  </div>
   
 
-  </div>
-  <div id="map">
-  <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
-  </div>
-  <script src="js/uStates.js"></script> <!-- creates uStates. -->
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+ 
+  <script src="js/d3.v4.min.js"></script>
+  <script src="js/d3-scale-chromatic.v1.min.js"></script>
+  <script src="js/state_map.js"></script>
   <script src="js/food.js"></script>
+
 </body>

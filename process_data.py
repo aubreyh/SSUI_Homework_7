@@ -3,7 +3,8 @@ import sys
 import json
 import collections
 
-years_selected = ["2010", "2011", "2012", "2013", "2014", "2015"]
+years_selected = [str(year) for year in range(2000, 2016)]
+
 
 def main():
     data = {}
@@ -47,31 +48,21 @@ def main():
     for (k1, k2), value in data.iteritems(): 
         years[k1][k2] = value
     
-    f = open('data/nst-est2016-01_modified.csv', 'r')
+    f = open('data/population.csv', 'r')
     reader = csv.reader(f)
     next(reader) #skip header
     for row in reader:
         state = row[0].strip()
-        year_2010 = int(row[3].replace(",", ""))
-        year_2011 = int(row[4].replace(",", ""))
-        year_2012 = int(row[5].replace(",", ""))
-        year_2013 = int(row[6].replace(",", ""))
-        year_2014 = int(row[7].replace(",", ""))
-        year_2015 = int(row[8].replace(",", ""))
-        existing_data = years["2010"][state]
-        existing_data["population"] = year_2010
-        existing_data = years["2011"][state]
-        existing_data["population"] = year_2011
-        #print years["2012"]
-        existing_data = years["2012"][state]
-        existing_data["population"] = year_2012
-        existing_data = years["2013"][state]
-        existing_data["population"] = year_2013
-        existing_data = years["2014"][state]
-        existing_data["population"] = year_2014
-        existing_data = years["2015"][state]
-        existing_data["population"] = year_2015
-
+        for i in range(0, len(years_selected)):
+            y = years_selected[i]
+            temp = years[y] 
+            if(state not in temp):
+                years[y][state] = {"population": 0, "illnesses": 0, "hospitalizations": 0, "fatalities": 0}
+                
+            existing_data = years[y][state]
+            col_num = i+1;
+            existing_data["population"] = int(row[col_num].replace(",", ""))
+                
     with open('data/illnesses.json', 'w') as outfile:
         json.dump(years, outfile)
     

@@ -1,65 +1,111 @@
-	#container{
-        margin-top: 25px;
+	body{
+        font-family: Helvetica;
     }
+    
+    #container{
+        margin-left: 50px;
+    }
+    
+    #slider_label{
+        display: inline-block; 
+        width: 240px; 
+        text-align: right;
+    }
+    
     h1{
-        margin-left: 125px
+        font-size: 25px;
+        margin-left: 175px
     }
 
     input[type="range"] {
         position:absolute;
-        /*-webkit-transform: rotate(270deg);*/
-        top: 580px;
-        left: 800px;
-        width: 125px;
-       
+        top: 540px;
+        left: 850px;
+        width: 125px; 
     }
+    
+    .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 15px;
+        border-radius: 5px;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #FFFFFF;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #FFFFFF;
+        cursor: pointer;
+    }
+
+    
     .state{
 		fill: none;
 		stroke: #a9a9a9;
 		stroke-width: 1;
 	}
+    
 	.state:hover{
 		fill-opacity:0.5;
 	}
+    
     .year.label {
-      font-size: 65px;
+      font-size: 58px;
       fill: #DDD;
     }
+    
 	#tooltip {   
 		position: absolute;           
-		text-align: center;
 		padding: 20px;             
-		margin: 10px;
-		font: 12px sans-serif;        
-		background: lightsteelblue;   
+		margin: 10px;        
 		border: 1px;      
 		border-radius: 2px;           
 		pointer-events: none;         
 	}
+    
 	#tooltip h4{
 		margin:0;
-		font-size:14px;
+		font-size: 13px;
+        text-align: center;
+        line-height: 2;
 	}
+    
+    #tooltip span{
+        float: right;
+        padding-left: 10px;
+	}
+    
 	#tooltip{
-		background:rgba(0,0,0,0.9);
-		border:1px solid grey;
-		border-radius:5px;
-		font-size:12px;
-		width:auto;
-		padding:4px;
-		color:white;
-		opacity:0;
+		background: rgba(0,0,0,0.9);
+		border: 1px solid grey;
+		border-radius: 5px;
+		font-size: 11px;
+		width: auto;
+		padding: 5px;
+		color: white;
+		opacity: 0;
 	}
+    
 	#tooltip table{
-		table-layout:fixed;
+		table-layout: fixed;
 	}
-	#tooltip tr td{
-		padding:0;
-		margin:0;
-	}
-	#tooltip tr td:nth-child(1){
-		width:50px;
-	}
-	#tooltip tr td:nth-child(2){
-		text-align:center;
-	}
+    
