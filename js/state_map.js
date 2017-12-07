@@ -55,12 +55,12 @@
             .attr("fill", "#000")
             .attr("text-anchor", "start")
             .attr("font-weight", "bold")
-            .text("Outbreaks Per Capita");
+            .text("Cases per 100,000 people");
 
         tick_values = [5, 10, 15, 20, 25, 30, 35, 40, 45]       
         g.call(d3.axisBottom(x)
             .tickSize(13)
-            .tickFormat(function(x, i) { return i ? tick_values[i] : tick_values[i] + "%"; })
+            .tickFormat(function(x, i) { return tick_values[i]; })
             .tickValues(linear_color.domain()))
           .select(".domain")
             .remove();

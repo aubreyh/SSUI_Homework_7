@@ -14,21 +14,32 @@
     
     h1{
         font-size: 25px;
-        margin-left: 175px
+        margin-left: 120px
     }
 
     input[type="range"] {
         position:absolute;
-        top: 540px;
+        top: 545px;
         left: 850px;
         width: 125px; 
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-apperance: none;
+        border-radius: 6px;
+        height: 6px;
+        background-image: -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            color-stop(0.15, #C5C5C5),
+            color-stop(0.15, #C5C5C5)
+        );
     }
     
+
     .slider {
         -webkit-appearance: none;
         width: 100%;
-        height: 15px;
-        border-radius: 5px;
         outline: none;
         opacity: 0.7;
         -webkit-transition: .2s;
@@ -42,17 +53,18 @@
     .slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        border-radius: 25px;
         background: #FFFFFF;
         cursor: pointer;
+        
     }
 
     .slider::-moz-range-thumb {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        border-radius: 25px;
         background: #FFFFFF;
         cursor: pointer;
     }
