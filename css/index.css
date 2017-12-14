@@ -14,6 +14,7 @@
     }
     
     h1{
+        font-weight: normal;
         font-size: 25px;
         margin-left: 110px
     }
@@ -57,7 +58,7 @@
         width: 18px;
         height: 18px;
         border-radius: 25px;
-        border: 2px solid grey;
+        border: 2px solid #a9a9a9;
         background: #FFFFFF;
         cursor: pointer;
         
@@ -68,7 +69,7 @@
         height: 18px;
         border-radius: 25px;
         background: #FFFFFF;
-        border: 2px solid grey;
+        border: 2px solid #a9a9a9;
         cursor: pointer;
     }
  
