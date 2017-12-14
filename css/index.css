@@ -57,6 +57,7 @@
         width: 18px;
         height: 18px;
         border-radius: 25px;
+        border: 2px solid black;
         background: #FFFFFF;
         cursor: pointer;
         
@@ -67,6 +68,7 @@
         height: 18px;
         border-radius: 25px;
         background: #FFFFFF;
+        border: 2px solid grey;
         cursor: pointer;
     }
  
