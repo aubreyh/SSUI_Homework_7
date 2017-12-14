@@ -2,7 +2,7 @@
 	    
 	var state_map = {};
 		
-	state_map.draw = function(id, data, state_paths, state_abbr, year, toolTip, color){	
+	state_map.draw = function(id, data, state_paths, state_abbr, year, tooltip, color){	
         
         var old_svg = d3.select("svg");
         var width = +old_svg.attr("width");
@@ -71,7 +71,7 @@
 		function mouseOver(d){
 			d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
 			var state_name = state_abbr[d.id]
-			d3.select("#tooltip").html(toolTip(d.n, data[state_name]))  
+			d3.select("#tooltip").html(tooltip(d.n, data[state_name]))  
 				.style("left", (d3.event.pageX) + "px")     
 				.style("top", (d3.event.pageY - 28) + "px");
 		}
@@ -83,6 +83,7 @@
 		d3.select(id).selectAll(".state")
 			.data(state_paths).enter().append("path")
             .attr("class", "state")
+            .attr("id", "state")
             .attr("d", function(d){ 
                 return d.d;
             })
