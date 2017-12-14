@@ -55,8 +55,8 @@
     .slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         border-radius: 25px;
         background: #00bcd4;
         cursor: pointer;
@@ -64,8 +64,8 @@
     }
 
     .slider::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         border-radius: 25px;
         background: #00bcd4;
         cursor: pointer;
