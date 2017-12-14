@@ -22,7 +22,7 @@
     input[type="range"] {
         position:absolute;
         top: 545px;
-        left: 850px;
+        left: 860px;
         width: 125px; 
         cursor: pointer;
         -webkit-appearance: none;
@@ -58,8 +58,7 @@
         width: 18px;
         height: 18px;
         border-radius: 25px;
-        border: 2px solid #a9a9a9;
-        background: #FFFFFF;
+        background: #00bcd4;
         cursor: pointer;
         
     }
@@ -68,8 +67,7 @@
         width: 18px;
         height: 18px;
         border-radius: 25px;
-        background: #FFFFFF;
-        border: 2px solid #a9a9a9;
+        background: #00bcd4;
         cursor: pointer;
     }
  
